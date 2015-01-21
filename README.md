@@ -1,7 +1,7 @@
 # cardreader
 
 ##TODO:
-#Create sqlite DB to store user records
+Create sqlite DB to store user records
 - Name
 - Surname
 - Student number
