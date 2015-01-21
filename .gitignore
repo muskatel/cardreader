@@ -1,3 +1,14 @@
 ## Git ignored files
 
+## IDE ignored files
+
+.project
+.pydevproject
+
+## Python ignored files
+
 *.pyc
+
+## DB ignored files
+
+*.db

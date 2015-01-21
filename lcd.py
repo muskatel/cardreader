@@ -66,6 +66,9 @@ def init():
   # Initialise display
   lcd_init()
   LCD_INIT = True
+  
+def cleanup():
+    GPIO.cleanup()
  
 def lcd_init():
   # Initialise display

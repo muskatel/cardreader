@@ -1,0 +1,8 @@
+CREATE TABLE `User` (
+	`id`	INTEGER PRIMARY KEY AUTOINCREMENT,
+	`name`	TEXT NOT NULL,
+	`surname`	TEXT NOT NULL,
+	`student_id`	TEXT NOT NULL,
+	`card_id`	TEXT NOT NULL DEFAULT '0',
+	`pin`	TEXT NOT NULL
+);
