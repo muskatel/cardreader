@@ -6,3 +6,9 @@ CREATE TABLE `User` (
 	`card_id`	TEXT NOT NULL DEFAULT '0',
 	`pin`	TEXT NOT NULL
 );
+
+CREATE TABLE `Log` (
+	`id`	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+	`card_id`	TEXT NOT NULL,
+	`timecode`	TEXT NOT NULL
+);

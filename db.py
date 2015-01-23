@@ -13,10 +13,10 @@ def init():
     DB_INIT = True
     
 def drop_records():
-    conn.execute(open('sql/purge.sql', 'r').read())
+    conn.executescript(open('sql/purge.sql', 'r').read())
     
 def create_table():
-    conn.execute(open('sql/create.sql', 'r').read())
+    conn.executescript(open('sql/create.sql', 'r').read())
     conn.commit()
 
 # I am aware that this is horribly insecure, don't bitch at me about it
@@ -40,6 +40,19 @@ def create_record(**kwargs):
         return True
     else:
         return False
+    
+def log_scan(card):
+    if not DB_INIT:
+        init()
+    if card:
+        user = get_record(card=card)
+        if not user:
+            return None
+        conn.execute("INSERT INTO `Log` (card_id, timecode) VALUES ('%s', datetime('now'));" % card)
+        conn.commit()
+        return user
+    else:
+        return None
         
 def cleanup():
     if conn:

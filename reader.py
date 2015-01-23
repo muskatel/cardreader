@@ -37,7 +37,7 @@ def main():
                 while count < 10:
                     lcd.screen_write('Scanning...')
                     card = nfc.read_card()
-                    data = db.get_record(card=card)
+                    data = db.log_scan(card)
                     print data
                     lcd.screen_write(data['name'], data['surname'])
                     count += 1
