@@ -4,10 +4,8 @@
 import lcd
 import nfc
 import db
-from time import sleep
 
 def main():
-    read = 0
     lcd.init()
     nfc.init()
     db.init()
@@ -15,13 +13,14 @@ def main():
     
     try:
         while True:
-            c = input('(C)reate new record\n(S)can card\nOption (c/S): ')
-            if c.lower() == 'c':
+            c = raw_input('(C)reate new record\n(S)can card\nOption (c/S): ')
+            return
+            if c.lower() is 'c':
                 lcd.screen_write('Enter details', '')
                 name, surname, studno, card, pin = '', '', '', '', ''
                 while True:
                     name, surname, studno, card, pin = promptCreateRecord()
-                    b = input ('Is this information correct? (Y/n): ')
+                    b = raw_input ('Is this information correct? (Y/n): ')
                     if b.lower() == 'n':
                         continue
                     else:
@@ -47,12 +46,12 @@ def main():
         db.cleanup()
 
 def promptCreateRecord():
-    a = input('Name: ')
-    b = input('Surname: ')
-    c = input('Student Number: ')
+    a = raw_input('Name: ')
+    b = raw_input('Surname: ')
+    c = raw_input('Student Number: ')
     print 'Please scan your card'
     d = nfc.read_card()
-    e = input('Please enter your pin: ')
+    e = raw_input('Please enter your pin: ')
     return (a, b, c, d, e)
         
     
