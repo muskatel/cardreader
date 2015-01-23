@@ -48,7 +48,7 @@ def log_scan(card):
         user = get_record(card=card)
         if not user:
             return None
-        conn.execute("INSERT INTO `Log` (card_id, timecode) VALUES ('%s', datetime('now'));" % card)
+        conn.execute("INSERT INTO `Log` (card_id, timecode) VALUES ('%s', datetime('now'));" % encrypt.encrypt(card))
         conn.commit()
         return user
     else:
