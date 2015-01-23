@@ -13,7 +13,7 @@ def main():
     
     try:
         while True:
-            c = raw_input('(C)reate new record\n(S)can card\nOption (c/S): ')
+            c = raw_input('\n\tOptions\n(C)reate new record\n(S)can card\nOption (c/S): ')
             if c.lower() is 'c':
                 lcd.screen_write('Enter details', '')
                 name, surname, studno, card, pin = '', '', '', '', ''
