@@ -13,8 +13,8 @@ def main():
     
     try:
         while True:
-            c = raw_input('\n\tOptions:\n(C)reate new record\n(S)can card\nOption (c/S): ')
-            if c.lower() is 'c':
+            c = raw_input('\n\tOptions:\n(C)reate new record\n(S)can card\n(Q)uit\nOption (c/S/q): ')
+            if c.lower() == 'c':
                 lcd.screen_write('Enter details', '')
                 name, surname, studno, card, pin = '', '', '', '', ''
                 while True:
@@ -30,13 +30,15 @@ def main():
                 else:
                     lcd.screen_write('Database error')
                     break
-
+            elif c.lower() == 'q':
+                break
             else:
                 count = 0
                 while count < 10:
                     lcd.screen_write('Scanning...')
                     card = nfc.read_card()
                     data = db.get_record(card=card)
+                    print data
                     lcd.screen_write(data['name'], data['surname'])
                     count += 1
     finally:
@@ -45,7 +47,7 @@ def main():
         db.cleanup()
 
 def promptCreateRecord():
-    a = raw_input('Name: ')
+    a = raw_input('First Name: ')
     b = raw_input('Surname: ')
     c = raw_input('Student Number: ')
     print 'Please scan your card'
