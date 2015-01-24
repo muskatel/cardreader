@@ -37,10 +37,14 @@ def main():
                 while count < 10:
                     lcd.screen_write('Scanning...')
                     card = nfc.read_card()
-                    data = db.log_scan(card)
-                    print data
-                    lcd.screen_write(data['name'], data['surname'])
-                    count += 1
+                    pin = raw_input('Please enter your PIN: ')
+                    data = db.log_scan(card, pin)
+                    if data:
+                        print data
+                        lcd.screen_write(data['name'], data['surname'])
+                        count += 1
+                    else:
+                        lcd.screen_write('[Err] Invalid', 'Card or PIN')
     finally:
         lcd.cleanup()
         nfc.cleanup()

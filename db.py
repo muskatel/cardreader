@@ -41,16 +41,29 @@ def create_record(**kwargs):
     else:
         return False
     
-def log_scan(card):
+def auth_pin(user, pin):
+    secret = user['pin']
+    return secret == encrypt.encrypt(pin)
+
+def auth_card(card, pin):
+    user = get_record(card=card)
+    if user:
+        return auth_pin(user, pin)
+    return False
+    
+def log_scan(card, pin):
     if not DB_INIT:
         init()
     if card:
         user = get_record(card=card)
         if not user:
             return None
-        conn.execute("INSERT INTO `Log` (card_id, timecode) VALUES ('%s', datetime('now'));" % encrypt.encrypt(card))
-        conn.commit()
-        return user
+        if auth_pin(user, pin):
+            conn.execute("INSERT INTO `Log` (card_id, timecode) VALUES ('%s', datetime('now'));" % encrypt.encrypt(card))
+            conn.commit()
+            return user
+        else:
+            return None
     else:
         return None
         
