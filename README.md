@@ -1,11 +1,9 @@
 # cardreader
+An automated attendance register written in python for a Raspberry Pi. This project is a proof of concept for a larger task. More to come later.
+##Done:
+- Create new "student" records
+- Scan card to "authenticate" the user
+- All card scans are logged.
 
 ##TODO:
-Create sqlite DB to store user records
-- Name
-- Surname
-- Student number
-- Card ID
-- Pin (SHA256)
-
-Program must either prompt user for details to create a new record or wait to read a card and fetch a record from the DB
+- Include the use of a PIN code when "authenticating" a user
