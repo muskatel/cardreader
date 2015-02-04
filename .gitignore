@@ -12,3 +12,7 @@
 ## DB ignored files
 
 *.db
+/encrypt.py
+/db.py
+/sql/create.sql
+/sql/purge.sql
